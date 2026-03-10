@@ -137,24 +137,36 @@ async function loadOrders(){
 const snapshot = await getDocs(collection(db,"orders"))
 
 let table = ""
-  
+
 let total = 0
 let ready = 0
-let pending = 0
+let pendingPayment = 0
+let pendingOrders = 0
 
 snapshot.forEach((doc)=>{
 
 let d = doc.data()
+
 total++
 
 if(d.status === "Ready"){
 ready++
+}else{
+pendingOrders++
 }
 
 if(d.due > 0){
-pending += Number(d.due)
+pendingPayment += Number(d.due)
 }
 
+})
+
+document.getElementById("totalOrders").innerText = total
+document.getElementById("readyOrders").innerText = ready
+document.getElementById("pendingOrders").innerText = pendingOrders
+document.getElementById("pendingPayment").innerText = "₹" + pendingPayment
+
+}
 table += `
 <tr>
 
@@ -284,6 +296,4 @@ row.style.display = "none"
 })
 
 }
-document.getElementById("totalOrders").innerText = total
-document.getElementById("readyOrders").innerText = ready
-document.getElementById("pendingPayment").innerText = "₹" + pending
+
