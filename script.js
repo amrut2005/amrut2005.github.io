@@ -184,7 +184,7 @@ ${d.photo ? `<img src="${d.photo}" width="60">` : ""}
 document.getElementById("orderTable").innerHTML = table
 
 }
-import { updateDoc, doc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
 
 window.updateStatus = async function(id,status){
 
@@ -249,3 +249,5 @@ alert("Order Deleted")
 loadOrders()
 
 }
+
+loadOrders()
