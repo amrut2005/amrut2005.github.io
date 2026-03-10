@@ -1,21 +1,22 @@
-<!DOCTYPE html>
-<html>
-<head>
-<title>Edit Order</title>
-<link rel="stylesheet" href="style.css">
-</head>
+<h2>Edit Customer Order</h2>
 
-<body>
+<input id="name" placeholder="Customer Name">
 
-<h2>Edit Customer</h2>
+<input id="phone" placeholder="Mobile Number">
 
-<input id="name" placeholder="Name">
-<input id="phone" placeholder="Phone">
-<input id="dress" placeholder="Dress">
+<input id="dress" placeholder="Dress Type">
 
-<button onclick="updateOrder()">Update</button>
+<input id="amount" placeholder="Total Amount">
+
+<input id="paid" placeholder="Amount Paid">
+
+<input id="dueDate" type="date">
+
+<select id="status">
+<option>Stitching</option>
+<option>Ready</option>
+</select>
+
+<button onclick="updateOrder()">Update Order</button>
 
 <script type="module" src="script.js"></script>
-
-</body>
-</html>
