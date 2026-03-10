@@ -1,5 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+import { getFirestore, collection, addDoc, getDocs, query, where } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyALE38Zrz2YCXaGOjm2T_2Kb1z7W5Xr4D0",
@@ -13,6 +13,8 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
+
+// SAVE ORDER
 window.saveOrder = async function () {
 
   const name = document.getElementById("name").value;
@@ -25,23 +27,55 @@ window.saveOrder = async function () {
 
   const due = amount - paid;
 
-  try {
+  await addDoc(collection(db,"orders"),{
+    name,
+    phone,
+    dress,
+    amount,
+    paid,
+    due,
+    dueDate,
+    status
+  });
 
-    await addDoc(collection(db, "orders"), {
-      name: name,
-      phone: phone,
-      dress: dress,
-      amount: amount,
-      paid: paid,
-      due: due,
-      dueDate: dueDate,
-      status: status
-    });
+  alert("Order Saved Successfully");
+};
 
-    alert("Order Saved Successfully");
 
-  } catch (error) {
-    console.error("Error:", error);
-    alert("Error saving order");
+
+// CHECK ORDER STATUS
+window.checkStatus = async function(){
+
+  const phone = document.getElementById("searchPhone").value;
+
+  const q = query(collection(db,"orders"), where("phone","==",phone));
+
+  const querySnapshot = await getDocs(q);
+
+  let resultHTML = "";
+
+  querySnapshot.forEach((doc)=>{
+
+    const data = doc.data();
+
+    resultHTML += `
+      <div>
+      <p><b>Name:</b> ${data.name}</p>
+      <p><b>Dress:</b> ${data.dress}</p>
+      <p><b>Status:</b> ${data.status}</p>
+      <p><b>Paid:</b> ₹${data.paid}</p>
+      <p><b>Due:</b> ₹${data.due}</p>
+      <p><b>Delivery Date:</b> ${data.dueDate}</p>
+      <hr>
+      </div>
+    `;
+
+  });
+
+  if(resultHTML===""){
+    resultHTML = "No order found";
   }
+
+  document.getElementById("result").innerHTML = resultHTML;
+
 };
