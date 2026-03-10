@@ -85,3 +85,46 @@ resultHTML = "No order found";
 document.getElementById("result").innerHTML = resultHTML;
 
 };
+async function loadOrders(){
+
+const snapshot = await getDocs(collection(db,"orders"))
+
+let table = ""
+
+snapshot.forEach((doc)=>{
+
+let d = doc.data()
+
+table += `
+<tr>
+
+<td>${d.name}</td>
+<td>${d.phone}</td>
+<td>${d.dress}</td>
+<td>${d.amount}</td>
+<td>${d.paid}</td>
+<td>${d.due}</td>
+
+<td>
+
+<select onchange="updateStatus('${doc.id}',this.value)">
+
+<option ${d.status=="Stitching"?"selected":""}>Stitching</option>
+<option ${d.status=="Ready"?"selected":""}>Ready</option>
+
+</select>
+
+</td>
+
+<td>
+<button onclick="editOrder('${doc.id}')">Edit</button>
+</td>
+
+</tr>
+`
+
+})
+
+document.getElementById("orderTable").innerHTML = table
+
+}
