@@ -19,32 +19,70 @@ const db = getFirestore(app);
 
 window.saveOrder = async function(){
 
-const name = document.getElementById("name").value;
-const phone = document.getElementById("phone").value;
-const dress = document.getElementById("dress").value;
-const amount = Number(document.getElementById("amount").value);
-const paid = Number(document.getElementById("paid").value);
-const dueDate = document.getElementById("dueDate").value;
-const status = document.getElementById("status").value;
+const name = document.getElementById("name").value
+const phone = document.getElementById("phone").value
+const dress = document.getElementById("dress").value
+const amount = Number(document.getElementById("amount").value)
+const paid = Number(document.getElementById("paid").value)
+const dueDate = document.getElementById("dueDate").value
+const status = document.getElementById("status").value
 
-const due = amount - paid;
+const photoFile = document.getElementById("photo").files[0]
+
+let photoData = ""
+
+if(photoFile){
+
+const reader = new FileReader()
+
+reader.onload = async function(){
+
+photoData = reader.result
+
+const due = amount - paid
 
 await addDoc(collection(db,"orders"),{
-name:name,
-phone:phone,
-dress:dress,
-amount:amount,
-paid:paid,
-due:due,
-dueDate:dueDate,
-status:status
-});
+name,
+phone,
+dress,
+amount,
+paid,
+due,
+dueDate,
+status,
+photo:photoData
+})
 
-alert("Order Saved Successfully");
+alert("Order Saved")
 
-};
+loadOrders()
 
+}
 
+reader.readAsDataURL(photoFile)
+
+}else{
+
+const due = amount - paid
+
+await addDoc(collection(db,"orders"),{
+name,
+phone,
+dress,
+amount,
+paid,
+due,
+dueDate,
+status
+})
+
+alert("Order Saved")
+
+loadOrders()
+
+}
+
+}
 
 /* CUSTOMER CHECK STATUS */
 
