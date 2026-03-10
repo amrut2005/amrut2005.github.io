@@ -1,5 +1,14 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-import { getFirestore, collection, addDoc, getDocs } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+import { 
+getFirestore, 
+collection, 
+addDoc, 
+getDocs, 
+deleteDoc, 
+doc, 
+updateDoc 
+} from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyALE38Zrz2YCXaGOjm2T_2Kb1z7W5Xr4D0",
@@ -212,5 +221,18 @@ dress:dress
 })
 
 alert("Customer Updated")
+
+}
+window.deleteOrder = async function(id){
+
+const confirmDelete = confirm("Delete this order?")
+
+if(!confirmDelete) return
+
+await deleteDoc(doc(db,"orders",id))
+
+alert("Order Deleted")
+
+loadOrders()
 
 }
