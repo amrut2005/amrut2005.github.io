@@ -140,8 +140,8 @@ let table = ""
 
 let total = 0
 let ready = 0
-let pendingPayment = 0
 let pendingOrders = 0
+let pendingPayment = 0
 
 snapshot.forEach((doc)=>{
 
@@ -155,18 +155,10 @@ ready++
 pendingOrders++
 }
 
-if(d.due > 0){
+if(d.due){
 pendingPayment += Number(d.due)
 }
 
-})
-
-document.getElementById("totalOrders").innerText = total
-document.getElementById("readyOrders").innerText = ready
-document.getElementById("pendingOrders").innerText = pendingOrders
-document.getElementById("pendingPayment").innerText = "₹" + pendingPayment
-
-}
 table += `
 <tr>
 
@@ -192,7 +184,6 @@ table += `
 ${d.photo ? `<img src="${d.photo}" width="60">` : ""}
 </td>
 
-
 <td>
 <button onclick="editOrder('${doc.id}')">Edit</button>
 </td>
@@ -207,6 +198,11 @@ ${d.photo ? `<img src="${d.photo}" width="60">` : ""}
 })
 
 document.getElementById("orderTable").innerHTML = table
+
+document.getElementById("totalOrders").innerText = total
+document.getElementById("readyOrders").innerText = ready
+document.getElementById("pendingOrders").innerText = pendingOrders
+document.getElementById("pendingPayment").innerText = "₹" + pendingPayment
 
 }
 
