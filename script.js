@@ -211,16 +211,29 @@ let id = localStorage.getItem("editID")
 let name = document.getElementById("name").value
 let phone = document.getElementById("phone").value
 let dress = document.getElementById("dress").value
+let amount = Number(document.getElementById("amount").value)
+let paid = Number(document.getElementById("paid").value)
+let dueDate = document.getElementById("dueDate").value
+let status = document.getElementById("status").value
+
+let due = amount - paid
 
 await updateDoc(doc(db,"orders",id),{
 
 name:name,
 phone:phone,
-dress:dress
+dress:dress,
+amount:amount,
+paid:paid,
+due:due,
+dueDate:dueDate,
+status:status
 
 })
 
-alert("Customer Updated")
+alert("Order Updated")
+
+window.location="dashboard.html"
 
 }
 window.deleteOrder = async function(id){
