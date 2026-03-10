@@ -1,5 +1,7 @@
 <!DOCTYPE html>
+
 <html>
+
 <head>
 <title>Super Tailor Dashboard</title>
 <link rel="stylesheet" href="style.css">
@@ -9,34 +11,54 @@
 
 <h1>Super Tailor Dashboard</h1>
 
+<h2>Add Customer Order</h2>
+
 <input id="name" placeholder="Customer Name">
+<br><br>
 
 <input id="phone" placeholder="Mobile Number">
+<br><br>
 
 <input id="dress" placeholder="Dress Type">
+<br><br>
 
 <input id="amount" placeholder="Total Amount">
+<br><br>
 
 <input id="paid" placeholder="Amount Paid">
+<br><br>
 
 <input id="dueDate" type="date">
+<br><br>
 
 <select id="status">
 <option>Stitching</option>
 <option>Ready</option>
 </select>
-  
+
+<br><br>
+
 <input type="file" id="photo">
-  
+
+<br><br>
+
 <button onclick="saveOrder()">Save Order</button>
 
-<script type="module" src="script.js"></script>
+<hr>
 
-</body>
-</html>
+<h2>Search Customer</h2>
+
+<input 
+type="text"
+id="searchInput"
+placeholder="Search name or phone..."
+onkeyup="searchOrders()"
+style="width:300px;padding:8px;margin-bottom:10px;">
+
 <h2>Customer Orders</h2>
 
 <table border="1" width="100%">
+
 <thead>
 
 <tr>
@@ -50,7 +72,6 @@
 <th>Photo</th>
 <th>Edit</th>
 <th>Delete</th>
-
 </tr>
 
 </thead>
@@ -60,3 +81,8 @@
 </tbody>
 
 </table>
+
+<script type="module" src="script.js"></script>
+
+</body>
+</html>
