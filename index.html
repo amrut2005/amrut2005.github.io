@@ -1,191 +1,22 @@
 <!DOCTYPE html>
 <html>
 <head>
-
 <title>Super Tailor</title>
-
-<style>
-
-body{
-font-family:Arial;
-background:#f2f2f2;
-text-align:center;
-}
-
-header{
-background:#222;
-color:white;
-padding:20px;
-}
-
-.container{
-width:90%;
-max-width:700px;
-margin:auto;
-background:white;
-padding:20px;
-margin-top:20px;
-border-radius:10px;
-}
-
-input,select{
-width:90%;
-padding:10px;
-margin:8px;
-}
-
-button{
-padding:10px 20px;
-background:#007BFF;
-color:white;
-border:none;
-border-radius:5px;
-cursor:pointer;
-}
-
-.result{
-margin-top:20px;
-padding:15px;
-background:#eee;
-}
-
-img{
-max-width:200px;
-margin-top:10px;
-}
-
-</style>
-
+<link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<header>
-
 <h1>Super Tailor</h1>
+<h2>Check Your Dress Status</h2>
 
-<p>Customer Dress Tracking System</p>
-
-</header>
-
-<div class="container">
-
-<h2>Add Customer Order</h2>
-
-<input id="name" placeholder="Customer Name">
-
-<input id="phone" placeholder="Mobile Number">
-
-<input id="dress" placeholder="Dress Type">
-
-<input id="amount" placeholder="Total Amount">
-
-<input id="paid" placeholder="Amount Paid">
-
-<input id="dueDate" type="date">
-
-<select id="status">
-
-<option value="Stitching">Stitching</option>
-
-<option value="Ready">Ready</option>
-
-</select>
-
-<input type="file" id="photo">
-
-<br>
-
-<button onclick="saveOrder()">Save Order</button>
-
-</div>
-
-<div class="container">
-
-<h2>Check Dress Status</h2>
-
-<input id="searchPhone" placeholder="Enter Mobile Number">
+<input id="search" placeholder="Enter Mobile Number or Order ID">
 
 <button onclick="checkOrder()">Check</button>
 
-<div id="result" class="result"></div>
+<div id="result"></div>
 
-</div>
-
-<script>
-
-function saveOrder(){
-
-let name=document.getElementById("name").value;
-let phone=document.getElementById("phone").value;
-let dress=document.getElementById("dress").value;
-let amount=document.getElementById("amount").value;
-let paid=document.getElementById("paid").value;
-let dueDate=document.getElementById("dueDate").value;
-let status=document.getElementById("status").value;
-
-let photo=document.getElementById("photo").files[0];
-
-let reader=new FileReader();
-
-reader.onload=function(){
-
-let order={
-name:name,
-phone:phone,
-dress:dress,
-amount:amount,
-paid:paid,
-dueDate:dueDate,
-status:status,
-photo:reader.result
-};
-
-localStorage.setItem(phone,JSON.stringify(order));
-
-alert("Order Saved");
-
-};
-
-if(photo){
-reader.readAsDataURL(photo);
-}else{
-reader.onload();
-}
-
-}
-
-function checkOrder(){
-
-let phone=document.getElementById("searchPhone").value;
-
-let data=localStorage.getItem(phone);
-
-if(data){
-
-let order=JSON.parse(data);
-
-document.getElementById("result").innerHTML=
-"Name: "+order.name+"<br>"+
-"Dress: "+order.dress+"<br>"+
-"Amount: "+order.amount+"<br>"+
-"Paid: "+order.paid+"<br>"+
-"Due Date: "+order.dueDate+"<br>"+
-"Status: "+order.status+"<br>"+
-"<img src='"+order.photo+"'>";
-
-}
-
-else{
-
-document.getElementById("result").innerHTML="No Record Found";
-
-}
-
-}
-
-</script>
+<script src="script.js"></script>
 
 </body>
-
 </html>
