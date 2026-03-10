@@ -1,20 +1,47 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-<title>Admin Login</title>
+<title>Super Tailor Admin Login</title>
 <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
 <h1>Super Tailor Admin</h1>
+<h2>Login</h2>
 
 <input id="username" placeholder="Username">
+
+<br><br>
+
 <input id="password" type="password" placeholder="Password">
+
+<br><br>
 
 <button onclick="login()">Login</button>
 
-<script type="module" src="script.js"></script>
-  
+<script>
+
+function login(){
+
+let user = document.getElementById("username").value
+let pass = document.getElementById("password").value
+
+if(user=="admin" && pass=="1234"){
+
+window.location="dashboard.html"
+
+}else{
+
+alert("Wrong Username or Password")
+
+}
+
+}
+
+</script>
+
 </body>
+
 </html>
