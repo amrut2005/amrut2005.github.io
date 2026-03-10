@@ -155,7 +155,16 @@ table += `
 </td>
 
 <td>
+${d.photo ? `<img src="${d.photo}" width="60">` : ""}
+</td>
+
+
+<td>
 <button onclick="editOrder('${doc.id}')">Edit</button>
+</td>
+
+<td>
+<button onclick="deleteOrder('${doc.id}')">Delete</button>
 </td>
 
 </tr>
