@@ -128,3 +128,42 @@ table += `
 document.getElementById("orderTable").innerHTML = table
 
 }
+import { updateDoc, doc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+window.updateStatus = async function(id,status){
+
+await updateDoc(doc(db,"orders",id),{
+
+status:status
+
+})
+
+alert("Status Updated")
+
+}
+window.editOrder = function(id){
+
+localStorage.setItem("editID",id)
+
+window.location="edit.html"
+
+}
+window.updateOrder = async function(){
+
+let id = localStorage.getItem("editID")
+
+let name = document.getElementById("name").value
+let phone = document.getElementById("phone").value
+let dress = document.getElementById("dress").value
+
+await updateDoc(doc(db,"orders",id),{
+
+name:name,
+phone:phone,
+dress:dress
+
+})
+
+alert("Customer Updated")
+
+}
