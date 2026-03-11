@@ -25,30 +25,6 @@ const db = getFirestore(app);
 
 
 
-window.loadEditData = async function(){
-
-let id = localStorage.getItem("editID");
-
-if(!id) return;
-
-const docRef = doc(db,"orders",id);
-const docSnap = await getDoc(docRef);
-
-if(docSnap.exists()){
-
-let data = docSnap.data();
-
-document.getElementById("name").value = data.name;
-document.getElementById("phone").value = data.phone;
-document.getElementById("dress").value = data.dress;
-document.getElementById("amount").value = data.amount;
-document.getElementById("paid").value = data.paid;
-document.getElementById("dueDate").value = data.dueDate;
-document.getElementById("status").value = data.status;
-
-}
-
-}
 
 
 
