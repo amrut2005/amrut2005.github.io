@@ -429,3 +429,9 @@ alert("Order not found")
 }
 
 }
+
+window.onload = function(){
+
+loadOrders()
+
+}
