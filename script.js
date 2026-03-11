@@ -109,6 +109,14 @@ const data = doc.data();
 
 if(data.phone == phone){
 
+let dateLabel = "Delivery Date"
+let dateValue = data.dueDate
+
+if(data.status === "Collected"){
+dateLabel = "Collected Date"
+dateValue = data.collectedDate
+}
+
 resultHTML += `
 <div>
 <p><b>Name:</b> ${data.name}</p>
@@ -116,7 +124,7 @@ resultHTML += `
 <p><b>Status:</b> ${data.status}</p>
 <p><b>Paid:</b> ₹${data.paid}</p>
 <p><b>Due:</b> ₹${data.due}</p>
-<p><b>Delivery Date:</b> ${data.dueDate}</p>
+<p><b>${dateLabel}:</b> ${dateValue}</p>
 <hr>
 </div>
 `;
