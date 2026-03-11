@@ -239,11 +239,16 @@ loadOrders()
 
 window.editOrder = function(id){
 
+const confirmEdit = confirm("Edit this customer order?")
+
+if(!confirmEdit) return
+
 localStorage.setItem("editID",id)
 
 window.location="edit.html"
 
 }
+
 window.updateOrder = async function(){
 
 let id = localStorage.getItem("editID")
