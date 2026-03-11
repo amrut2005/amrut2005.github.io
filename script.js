@@ -67,6 +67,14 @@ photo:photoData
 })
 
 alert("Order Saved")
+let msg = `Super Tailor
+Hello ${name},
+Your order for ${dress} has been received.
+Delivery Date: ${dueDate}.
+Paid ₹${paid}
+Due ₹${due}`
+
+sendWhatsApp(phone,msg)
 
 loadOrders()
 
@@ -90,6 +98,14 @@ status
 })
 
 alert("Order Saved")
+let msg = `Super Tailor
+Hello ${name},
+Your order for ${dress} has been received.
+Delivery Date: ${dueDate}.
+Paid ₹${paid}
+Due ₹${due}`
+
+sendWhatsApp(phone,msg)
 
 loadOrders()
 
