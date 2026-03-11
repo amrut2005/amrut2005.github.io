@@ -227,11 +227,15 @@ let today = new Date().toISOString().split("T")[0]
 
 updateData.collectedDate = today
 
+}else{
+
+updateData.collectedDate = ""
+
 }
 
 await updateDoc(doc(db,"orders",id),updateData)
 
-alert("Status Updated Successfully")
+alert("Status Updated")
 
 loadOrders()
 
