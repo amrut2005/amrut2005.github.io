@@ -409,6 +409,12 @@ alert("Order not found")
 
 window.onload = function(){
 
+if(document.getElementById("orderTable")){
 loadOrders()
+}
+
+if(document.getElementById("name") && localStorage.getItem("editID")){
+loadEditData()
+}
 
 }
