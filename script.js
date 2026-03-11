@@ -321,3 +321,28 @@ row.style.display = "none"
 
 }
 
+window.filterStatus = function(){
+
+let filter = document.getElementById("statusFilter").value
+let table = document.getElementById("orderTable")
+let rows = table.getElementsByTagName("tr")
+
+for(let i=0;i<rows.length;i++){
+
+let statusCell = rows[i].getElementsByTagName("td")[8]
+
+if(statusCell){
+
+let statusText = statusCell.innerText || statusCell.textContent
+
+if(filter === "All" || statusText.includes(filter)){
+rows[i].style.display = ""
+}else{
+rows[i].style.display = "none"
+}
+
+}
+
+}
+
+}
