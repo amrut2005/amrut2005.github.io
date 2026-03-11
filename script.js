@@ -471,3 +471,21 @@ let url = "https://wa.me/91" + phone + "?text=" + encodeURIComponent(message)
 window.open(url,"_blank")
 
 }
+window.exportToExcel = function(){
+
+let table = document.querySelector("table")
+
+let html = table.outerHTML
+
+let url = 'data:application/vnd.ms-excel,' + encodeURIComponent(html)
+
+let downloadLink = document.createElement("a")
+
+downloadLink.href = url
+
+downloadLink.download = "Tailor_Orders.xls"
+
+downloadLink.click()
+
+}
+
