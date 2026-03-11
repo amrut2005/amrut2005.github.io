@@ -258,12 +258,29 @@ return
 }
 
 let updateData = { status:status }
+if(status === "Ready"){
+
+let msg = `Super Tailor
+Hello,
+Your dress is ready for collection.
+Please visit the shop.`
+
+sendWhatsApp(phone,msg)
+
+}
 
 if(status === "Collected"){
 
 let today = new Date().toISOString().split("T")[0]
 
 updateData.collectedDate = today
+  
+let msg = `Super Tailor
+Thank you for collecting your dress.
+Visit again!`
+
+sendWhatsApp(phone,msg)
+
 
 }else{
 
