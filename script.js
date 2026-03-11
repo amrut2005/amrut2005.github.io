@@ -67,6 +67,9 @@ photo:photoData
 })
 
 alert("Order Saved")
+  
+clearForm()
+  
 let msg = `Super Tailor
 Hello ${name},
 Your order for ${dress} has been received.
@@ -98,6 +101,9 @@ status
 })
 
 alert("Order Saved")
+
+clearForm()
+  
 let msg = `Super Tailor
 Hello ${name},
 Your order for ${dress} has been received.
@@ -486,6 +492,18 @@ downloadLink.href = url
 downloadLink.download = "Tailor_Orders.xls"
 
 downloadLink.click()
+
+}
+function clearForm(){
+
+document.getElementById("name").value = ""
+document.getElementById("phone").value = ""
+document.getElementById("dress").value = ""
+document.getElementById("amount").value = ""
+document.getElementById("paid").value = ""
+document.getElementById("dueDate").value = ""
+document.getElementById("status").value = "Stitching"
+document.getElementById("photo").value = ""
 
 }
 
