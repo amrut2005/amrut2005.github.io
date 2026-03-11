@@ -39,3 +39,20 @@ width:220px;
 padding:8px;
 width:150px;
 }
+.searchContainer{
+display:flex;
+justify-content:center;
+align-items:center;
+gap:20px;
+margin-bottom:20px;
+}
+
+.searchContainer input{
+width:250px;
+padding:8px;
+}
+
+.searchContainer select{
+width:150px;
+padding:8px;
+}
