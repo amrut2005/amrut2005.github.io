@@ -214,7 +214,7 @@ document.getElementById("totalOrders").innerText = total
 document.getElementById("readyOrders").innerText = ready
 document.getElementById("pendingOrders").innerText = pending
 document.getElementById("collectedOrders").innerText = collected
-document.getElementById("pendingPayment").innerText = "₹" + Payment
+document.getElementById("pendingPayment").innerText = "₹" + PendingPayment
 
 }
 
