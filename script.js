@@ -418,3 +418,11 @@ loadEditData()
 }
 
 }
+
+function sendWhatsApp(phone,message){
+
+let url = "https://wa.me/91" + phone + "?text=" + encodeURIComponent(message)
+
+window.open(url,"_blank")
+
+}
