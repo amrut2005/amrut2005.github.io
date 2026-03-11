@@ -172,10 +172,11 @@ table += `
 
 <td>
 
-<select onchange="updateStatus('${doc.id}',this.value)">
+<select style="width:110px" onchange="updateStatus('${doc.id}',this.value)">
 
 <option ${d.status=="Stitching"?"selected":""}>Stitching</option>
 <option ${d.status=="Ready"?"selected":""}>Ready</option>
+<option ${d.status=="Collected"?"selected":""}>Collected</option>
 
 </select>
 
