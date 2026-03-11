@@ -212,6 +212,13 @@ document.getElementById("pendingPayment").innerText = "₹" + pendingPayment
 
 window.updateStatus = async function(id,status){
 
+const confirmChange = confirm("Change order status to " + status + "?")
+
+if(!confirmChange){
+loadOrders()
+return
+}
+
 let updateData = { status:status }
 
 if(status === "Collected"){
@@ -223,6 +230,8 @@ updateData.collectedDate = today
 }
 
 await updateDoc(doc(db,"orders",id),updateData)
+
+alert("Status Updated Successfully")
 
 loadOrders()
 
