@@ -7,7 +7,8 @@ addDoc,
 getDocs, 
 deleteDoc, 
 doc, 
-updateDoc 
+updateDoc, 
+getDoc
 } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
 const firebaseConfig = {
