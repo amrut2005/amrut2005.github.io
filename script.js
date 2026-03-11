@@ -168,6 +168,7 @@ table += `
 <td>${d.amount}</td>
 <td>${d.paid}</td>
 <td>${d.due}</td>
+<td>${d.dueDate}</td>
 
 <td>
 
@@ -209,13 +210,21 @@ document.getElementById("pendingPayment").innerText = "₹" + pendingPayment
 
 window.updateStatus = async function(id,status){
 
-await updateDoc(doc(db,"orders",id),{
+let updateData = { status:status }
 
-status:status
+if(status === "Collected"){
 
-})
+let today = new Date().toISOString().split("T")[0]
+
+updateData.dueDate = today
+
+}
+
+await updateDoc(doc(db,"orders",id),updateData)
 
 alert("Status Updated")
+
+loadOrders()
 
 }
 window.editOrder = function(id){
