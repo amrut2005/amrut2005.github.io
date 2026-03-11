@@ -257,11 +257,23 @@ loadOrders()
 return
 }
 
+const docRef = doc(db,"orders",id)
+const docSnap = await getDoc(docRef)
+
+if(!docSnap.exists()){
+alert("Order not found")
+return
+}
+
+let data = docSnap.data()
+let phone = data.phone
+
 let updateData = { status:status }
+
 if(status === "Ready"){
 
 let msg = `Super Tailor
-Hello,
+Hello ${data.name},
 Your dress is ready for collection.
 Please visit the shop.`
 
@@ -274,13 +286,13 @@ if(status === "Collected"){
 let today = new Date().toISOString().split("T")[0]
 
 updateData.collectedDate = today
-  
+
 let msg = `Super Tailor
+Hello ${data.name},
 Thank you for collecting your dress.
 Visit again!`
 
 sendWhatsApp(phone,msg)
-
 
 }else{
 
