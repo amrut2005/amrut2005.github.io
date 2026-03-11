@@ -333,12 +333,18 @@ let statusCell = rows[i].getElementsByTagName("td")[8]
 
 if(statusCell){
 
-let statusText = statusCell.innerText || statusCell.textContent
+let statusSelect = statusCell.querySelector("select")
 
-if(filter === "All" || statusText.includes(filter)){
+if(statusSelect){
+
+let statusValue = statusSelect.value
+
+if(filter === "All" || statusValue === filter){
 rows[i].style.display = ""
 }else{
 rows[i].style.display = "none"
+}
+
 }
 
 }
