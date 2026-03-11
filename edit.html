@@ -1,3 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>Edit Order</title>
+
+<style>
+
+body{
+font-family: Arial;
+background:#f5f5f5;
+text-align:center;
+}
+
+.container{
+background:white;
+padding:30px;
+width:500px;
+margin:auto;
+margin-top:50px;
+border-radius:10px;
+box-shadow:0 0 10px rgba(0,0,0,0.2);
+}
+
+input,select{
+width:90%;
+padding:10px;
+margin:8px;
+}
+
+button{
+padding:10px 20px;
+background:#007bff;
+color:white;
+border:none;
+border-radius:5px;
+cursor:pointer;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
 <h2>Edit Customer Order</h2>
 
 <input id="name" placeholder="Customer Name">
@@ -13,10 +61,24 @@
 <input id="dueDate" type="date">
 
 <select id="status">
+
 <option>Stitching</option>
 <option>Ready</option>
+<option>Collected</option>
+
 </select>
+
+<br><br>
 
 <button onclick="updateOrder()">Update Order</button>
 
+</div>
+
 <script type="module" src="script.js"></script>
+
+<script>
+loadEditData()
+</script>
+
+</body>
+</html>
