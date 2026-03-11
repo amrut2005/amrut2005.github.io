@@ -140,8 +140,9 @@ let table = ""
 
 let total = 0
 let ready = 0
-let pendingOrders = 0
-let pendingPayment = 0
+let pending = 0
+let collected = 0
+let payment = 0
 
 snapshot.forEach((doc)=>{
 
@@ -151,13 +152,20 @@ total++
 
 if(d.status === "Ready"){
 ready++
-}else{
-pendingOrders++
+}
+
+if(d.status === "Stitching"){
+pending++
+}
+
+if(d.status === "Collected"){
+collected++
 }
 
 if(d.due){
-pendingPayment += Number(d.due)
+payment += Number(d.due)
 }
+
 
 table += `
 <tr>
