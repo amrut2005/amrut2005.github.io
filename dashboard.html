@@ -77,24 +77,24 @@
 
 <hr>
 
-<h2>Search Customer</h2>
+<h2 style="text-align:center;">Search Customer</h2>
 
-<div style="display:flex;gap:10px;margin-bottom:10px">
+<div class="searchContainer">
 
-<div class="searchBox">
-
-<input 
+<input
 type="text"
 id="searchInput"
 placeholder="Search name or phone..."
 onkeyup="searchOrders()">
 
 <select id="statusFilter" onchange="filterStatus()">
-<option>All Status</option>
-<option>Stitching</option>
-<option>Ready</option>
-<option>Collected</option>
+<option value="All">All Status</option>
+<option value="Stitching">Stitching</option>
+<option value="Ready">Ready</option>
+<option value="Collected">Collected</option>
 </select>
+
+</div>
 
 
 
