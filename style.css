@@ -23,3 +23,19 @@ color:white;
 border:none;
 border-radius:5px;
 }
+.searchBox{
+display:flex;
+justify-content:center;
+gap:20px;
+margin:20px 0;
+}
+
+.searchBox input{
+padding:8px;
+width:220px;
+}
+
+.searchBox select{
+padding:8px;
+width:150px;
+}
