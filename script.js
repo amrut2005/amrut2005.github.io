@@ -169,6 +169,7 @@ table += `
 <td>${d.paid}</td>
 <td>${d.due}</td>
 <td>${d.dueDate}</td>
+<td>${d.collectedDate ? d.collectedDate : "-"}</td>
 
 <td>
 
@@ -217,17 +218,16 @@ if(status === "Collected"){
 
 let today = new Date().toISOString().split("T")[0]
 
-updateData.dueDate = today
+updateData.collectedDate = today
 
 }
 
 await updateDoc(doc(db,"orders",id),updateData)
 
-alert("Status Updated")
-
 loadOrders()
 
 }
+
 window.editOrder = function(id){
 
 localStorage.setItem("editID",id)
