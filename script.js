@@ -23,7 +23,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-import { getDoc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
 
 window.loadEditData = async function(){
 
@@ -250,7 +250,8 @@ document.getElementById("totalOrders").innerText = total
 document.getElementById("readyOrders").innerText = ready
 document.getElementById("pendingOrders").innerText = pending
 document.getElementById("collectedOrders").innerText = collected
-document.getElementById("pendingPayment").innerText = "₹" + PendingPayment
+document.getElementById("pendingPayment").innerText = "₹" + payment
+
 
 }
 
