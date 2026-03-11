@@ -397,3 +397,35 @@ rows[i].style.display = "none"
 }
 
 }
+
+window.loadEditData = async function(){
+
+const id = localStorage.getItem("editID")
+
+if(!id){
+console.log("No edit ID found")
+return
+}
+
+const docRef = doc(db,"orders",id)
+const docSnap = await getDoc(docRef)
+
+if(docSnap.exists()){
+
+const data = docSnap.data()
+
+document.getElementById("name").value = data.name
+document.getElementById("phone").value = data.phone
+document.getElementById("dress").value = data.dress
+document.getElementById("amount").value = data.amount
+document.getElementById("paid").value = data.paid
+document.getElementById("dueDate").value = data.dueDate
+document.getElementById("status").value = data.status
+
+}else{
+
+alert("Order not found")
+
+}
+
+}
