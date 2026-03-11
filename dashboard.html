@@ -81,21 +81,22 @@
 
 <div style="display:flex;gap:10px;margin-bottom:10px">
 
+<div class="searchBox">
+
 <input 
 type="text"
 id="searchInput"
 placeholder="Search name or phone..."
-onkeyup="searchOrders()"
-style="width:250px;padding:8px;">
+onkeyup="searchOrders()">
 
-<select id="statusFilter" onchange="filterStatus()" style="padding:8px">
-
-<option value="All">All Status</option>
-<option value="Stitching">Stitching</option>
-<option value="Ready">Ready</option>
-<option value="Collected">Collected</option>
-
+<select id="statusFilter" onchange="filterStatus()">
+<option>All Status</option>
+<option>Stitching</option>
+<option>Ready</option>
+<option>Collected</option>
 </select>
+
+
 
 </div>
   
