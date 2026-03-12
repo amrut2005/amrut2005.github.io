@@ -600,3 +600,24 @@ document.getElementById("photo").value = ""
 
 }
 
+window.clearHistory = async function(){
+
+let code = prompt("Enter 6 digit secret code")
+
+if(code !== "776013"){
+alert("Wrong Secret Code")
+return
+}
+
+const snapshot = await getDocs(collection(db,"history"))
+
+snapshot.forEach(async (docu)=>{
+await deleteDoc(doc(db,"history",docu.id))
+})
+
+alert("History Cleared")
+
+loadHistory()
+
+}
+
