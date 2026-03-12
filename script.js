@@ -460,10 +460,13 @@ alert("Order not found")
 
 window.onload = function(){
 
+// Dashboard page
 if(document.getElementById("orderTable")){
 loadOrders()
+clearForm()
 }
 
+// Edit page
 if(document.getElementById("name") && localStorage.getItem("editID")){
 loadEditData()
 }
