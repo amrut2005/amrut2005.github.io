@@ -531,6 +531,13 @@ if(document.getElementById("name") && localStorage.getItem("editID")){
 loadEditData()
 }
 
+// Load history
+if(document.getElementById("historyTable")){
+loadHistory()
+}
+
+}
+
 async function loadHistory(){
 
 const snapshot = await getDocs(collection(db,"history"))
@@ -552,11 +559,7 @@ table += `
 
 })
 
-if(document.getElementById("historyTable")){
 document.getElementById("historyTable").innerHTML = table
-}
-
-}
 
 }
 
