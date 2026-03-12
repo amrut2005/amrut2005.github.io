@@ -621,7 +621,7 @@ loadHistory()
 
 }
 
-function logout(){
+window.logout = function(){
 
 const confirmLogout = confirm("Are you sure you want to logout?")
 
