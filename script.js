@@ -622,7 +622,15 @@ loadHistory()
 }
 
 function logout(){
-localStorage.removeItem("tailorLogin")
-window.location="login.html"
+
+const confirmLogout = confirm("Are you sure you want to logout?")
+
+if(!confirmLogout){
+return
 }
 
+localStorage.removeItem("tailorLogin")
+
+window.location = "login.html"
+
+}
