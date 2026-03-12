@@ -32,6 +32,7 @@ const db = getFirestore(app);
 
 window.saveOrder = async function(){
 
+const orderNo = document.getElementById("orderNo").value
 const name = document.getElementById("name").value
 const phone = document.getElementById("phone").value
 const dress = document.getElementById("dress").value
