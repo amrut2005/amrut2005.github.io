@@ -570,21 +570,61 @@ let url = "https://wa.me/91" + phone + "?text=" + encodeURIComponent(message)
 window.open(url,"_blank")
 
 }
+
 window.exportToExcel = function(){
 
-let table = document.querySelector("table")
+let table = document.getElementById("orderTable").rows
 
-let html = table.outerHTML
+let data = `
+<table border="1">
+<tr>
+<th>Order No</th>
+<th>Name</th>
+<th>Phone</th>
+<th>Dress</th>
+<th>Amount</th>
+<th>Paid</th>
+<th>Due</th>
+<th>Due Date</th>
+<th>Collected Date</th>
+<th>Status</th>
+</tr>
+`
 
-let url = 'data:application/vnd.ms-excel,' + encodeURIComponent(html)
+for(let i=0;i<table.length;i++){
 
-let downloadLink = document.createElement("a")
+let cells = table[i].cells
 
-downloadLink.href = url
+let status = cells[9].querySelector("select").value
 
-downloadLink.download = "Tailor_Orders.xls"
+data += `
+<tr>
+<td>${cells[0].innerText}</td>
+<td>${cells[1].innerText}</td>
+<td>${cells[2].innerText}</td>
+<td>${cells[3].innerText}</td>
+<td>${cells[4].innerText}</td>
+<td>${cells[5].innerText}</td>
+<td>${cells[6].innerText}</td>
+<td>${cells[7].innerText}</td>
+<td>${cells[8].innerText}</td>
+<td>${status}</td>
+</tr>
+`
 
-downloadLink.click()
+}
+  
+
+data += "</table>"
+
+let url = "data:application/vnd.ms-excel," + encodeURIComponent(data)
+
+let link = document.createElement("a")
+
+link.href = url
+link.download = "Tailor_Orders.xls"
+
+link.click()
 
 }
 function clearForm(){
