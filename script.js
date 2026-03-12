@@ -230,9 +230,8 @@ collected++
 if(d.due){
 payment += Number(d.due)
 }
-})
 
-orders.sort((a,b)=> (b.orderNo || 0) - (a.orderNo || 0))
+
 
 
 table += `
@@ -276,6 +275,8 @@ ${d.photo ? `<img src="${d.photo}" width="60">` : ""}
 `
 
 })
+//me
+orders.sort((a,b)=> (b.orderNo || 0) - (a.orderNo || 0))
 
 document.getElementById("orderTable").innerHTML = table
 
