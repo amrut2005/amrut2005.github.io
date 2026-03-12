@@ -621,3 +621,8 @@ loadHistory()
 
 }
 
+function logout(){
+localStorage.removeItem("tailorLogin")
+window.location="login.html"
+}
+
