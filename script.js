@@ -25,6 +25,19 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
+async function saveHistory(action, orderNo, name){
+
+const now = new Date().toLocaleString()
+
+await addDoc(collection(db,"history"),{
+action: action,
+orderNo: orderNo,
+name: name,
+time: now
+})
+
+}
+
 async function getNextOrderNo(){
 
 const snapshot = await getDocs(collection(db,"orders"))
@@ -94,6 +107,8 @@ status,
 photo:photoData
 })
 
+await saveHistory("New Order Created",orderNo,name)
+
 alert("Order Saved")
   
 clearForm()
@@ -128,6 +143,8 @@ due,
 dueDate,
 status
 })
+
+await saveHistory("New Order Created",orderNo,name)
 
 alert("Order Saved")
 
@@ -342,6 +359,8 @@ updateData.collectedDate = ""
 
 await updateDoc(doc(db,"orders",id),updateData)
 
+await saveHistory("Status Changed to " + status, data.orderNo, data.name)
+
 alert("Status Updated")
 
 loadOrders()
@@ -386,6 +405,8 @@ dueDate:dueDate,
 status:status
 
 })
+
+await saveHistory("Order Edited", id, name)
 
 alert("Order Updated")
 
