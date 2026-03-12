@@ -193,6 +193,8 @@ resultHTML = "No order found";
 document.getElementById("result").innerHTML = resultHTML;
 
 };
+
+
 async function loadOrders(){
 
 const snapshot = await getDocs(collection(db,"orders"))
@@ -211,7 +213,13 @@ snapshot.forEach((doc)=>{
 let d = doc.data()
 d.id = doc.id
 orders.push(d)
+})
 
+/* SORT ORDERS */
+orders.sort((a,b)=> (b.orderNo || 0) - (a.orderNo || 0))
+
+/* NOW BUILD TABLE */
+orders.forEach((d)=>{
 
 total++
 
@@ -231,13 +239,10 @@ if(d.due){
 payment += Number(d.due)
 }
 
-
-
-
 table += `
 <tr>
 
-<td>${d.orderNo}</td>
+<td>${d.orderNo || "-"}</td>
 <td>${d.name}</td>
 <td>${d.phone}</td>
 <td>${d.dress}</td>
@@ -248,15 +253,11 @@ table += `
 <td>${d.collectedDate ? d.collectedDate : "-"}</td>
 
 <td>
-
-<select style="width:110px" onchange="updateStatus('${doc.id}',this.value)">
-
+<select style="width:110px" onchange="updateStatus('${d.id}',this.value)">
 <option ${d.status=="Stitching"?"selected":""}>Stitching</option>
 <option ${d.status=="Ready"?"selected":""}>Ready</option>
 <option ${d.status=="Collected"?"selected":""}>Collected</option>
-
 </select>
-
 </td>
 
 <td>
@@ -264,19 +265,16 @@ ${d.photo ? `<img src="${d.photo}" width="60">` : ""}
 </td>
 
 <td>
-<button onclick="editOrder('${doc.id}')">Edit</button>
+<button onclick="editOrder('${d.id}')">Edit</button>
 </td>
 
 <td>
-<button onclick="deleteOrder('${doc.id}')">Delete</button>
+<button onclick="deleteOrder('${d.id}')">Delete</button>
 </td>
 
 </tr>
 `
-
 })
-//me
-orders.sort((a,b)=> (b.orderNo || 0) - (a.orderNo || 0))
 
 document.getElementById("orderTable").innerHTML = table
 
@@ -286,9 +284,7 @@ document.getElementById("pendingOrders").innerText = pending
 document.getElementById("collectedOrders").innerText = collected
 document.getElementById("pendingPayment").innerText = "₹" + payment
 
-
 }
-
 
 window.updateStatus = async function(id,status){
 
