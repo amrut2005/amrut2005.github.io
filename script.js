@@ -531,6 +531,33 @@ if(document.getElementById("name") && localStorage.getItem("editID")){
 loadEditData()
 }
 
+async function loadHistory(){
+
+const snapshot = await getDocs(collection(db,"history"))
+
+let table = ""
+
+snapshot.forEach((doc)=>{
+
+let d = doc.data()
+
+table += `
+<tr>
+<td>${d.time}</td>
+<td>${d.orderNo}</td>
+<td>${d.name}</td>
+<td>${d.action}</td>
+</tr>
+`
+
+})
+
+if(document.getElementById("historyTable")){
+document.getElementById("historyTable").innerHTML = table
+}
+
+}
+
 }
 
 function sendWhatsApp(phone,message){
