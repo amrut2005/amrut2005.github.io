@@ -419,6 +419,11 @@ const confirmDelete = confirm("Delete this order?")
 
 if(!confirmDelete) return
 
+const docSnap = await getDoc(doc(db,"orders",id))
+const data = docSnap.data()
+
+await saveHistory("Order Deleted", data.orderNo, data.name)
+
 await deleteDoc(doc(db,"orders",id))
 
 alert("Order Deleted")
