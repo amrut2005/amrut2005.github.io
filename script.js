@@ -23,7 +23,27 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
+async function getNextOrderNo(){
 
+const snapshot = await getDocs(collection(db,"orders"))
+
+let maxNo = 0
+
+snapshot.forEach((doc)=>{
+
+let data = doc.data()
+
+let num = Number(data.orderNo)
+
+if(num > maxNo){
+maxNo = num
+}
+
+})
+
+return maxNo + 1
+
+}
 
 
 
@@ -32,7 +52,11 @@ const db = getFirestore(app);
 
 window.saveOrder = async function(){
 
-const orderNo = document.getElementById("orderNo").value
+let orderNo = document.getElementById("orderNo").value
+
+if(!orderNo){
+orderNo = await getNextOrderNo()
+}
 const name = document.getElementById("name").value
 const phone = document.getElementById("phone").value
 const dress = document.getElementById("dress").value
@@ -92,6 +116,7 @@ reader.readAsDataURL(photoFile)
 const due = amount - paid
 
 await addDoc(collection(db,"orders"),{
+orderNo,
 name,
 phone,
 dress,
