@@ -393,6 +393,15 @@ let status = document.getElementById("status").value
 
 let due = amount - paid
 
+const docRef = doc(db,"orders",id)
+const docSnap = await getDoc(docRef)
+
+let orderNo = ""
+
+if(docSnap.exists()){
+orderNo = docSnap.data().orderNo
+}
+
 await updateDoc(doc(db,"orders",id),{
 
 name:name,
@@ -406,7 +415,7 @@ status:status
 
 })
 
-await saveHistory("Order Edited", id, name)
+await saveHistory("Order Edited", orderNo, name)
 
 alert("Order Updated")
 
