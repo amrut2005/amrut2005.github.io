@@ -205,9 +205,13 @@ let pending = 0
 let collected = 0
 let payment = 0
 
-snapshot.forEach((doc)=>{
+let orders = []
 
+snapshot.forEach((doc)=>{
 let d = doc.data()
+d.id = doc.id
+orders.push(d)
+
 
 total++
 
@@ -226,6 +230,9 @@ collected++
 if(d.due){
 payment += Number(d.due)
 }
+})
+
+orders.sort((a,b)=> (b.orderNo || 0) - (a.orderNo || 0))
 
 
 table += `
