@@ -683,3 +683,15 @@ localStorage.removeItem("tailorLogin")
 window.location = "login.html"
 
 }
+
+window.onload = function(){
+
+const params = new URLSearchParams(window.location.search)
+const phone = params.get("phone")
+
+if(phone){
+document.getElementById("phone").value = phone
+checkStatus()
+}
+
+}
