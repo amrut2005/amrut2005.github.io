@@ -206,6 +206,7 @@ payment += Number(d.due)
 table += `
 <tr>
 
+<td>${d.orderNo}</td>
 <td>${d.name}</td>
 <td>${d.phone}</td>
 <td>${d.dress}</td>
