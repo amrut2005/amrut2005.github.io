@@ -113,12 +113,25 @@ alert("Order Saved")
   
 clearForm()
   
+let link = `https://amrut2005.github.io/track.html?phone=${phone}`
+
 let msg = `Super Tailor
+
 Hello ${name},
-Your order for ${dress} has been received.
-Delivery Date: ${dueDate}.
-Paid ₹${paid}
-Due ₹${due}`
+
+Your order has been successfully received.
+
+Dress: ${dress}
+Delivery Date: ${dueDate}
+
+Total Amount: ₹${amount}
+Paid: ₹${paid}
+Pending Payment: ₹${due}
+
+Track your order status here:
+${link}
+
+Thank you for choosing Super Tailor.`
 
 sendWhatsApp(phone,msg)
 
@@ -329,10 +342,22 @@ let updateData = { status:status }
 
 if(status === "Ready"){
 
+let link = `https://amrut2005.github.io/track.html?phone=${phone}`
+
 let msg = `Super Tailor
+
 Hello ${data.name},
-Your dress is ready for collection.
-Please visit the shop.`
+
+Your dress (${data.dress}) is ready for collection.
+
+Total Amount: ₹${data.amount}
+Paid: ₹${data.paid}
+Pending Payment: ₹${data.due}
+
+Check your order status here:
+${link}
+
+Thank you!`
 
 sendWhatsApp(phone,msg)
 
@@ -344,12 +369,41 @@ let today = new Date().toISOString().split("T")[0]
 
 updateData.collectedDate = today
 
-let msg = `Super Tailor
+let msg = ""
+
+if(data.due == 0){
+
+msg = `Super Tailor
+
 Hello ${data.name},
-Thank you for collecting your dress.
-Visit again!`
+
+Thank you for collecting your dress (${data.dress}).
+
+Your bill is fully completed.
+
+We appreciate your visit.
+Please visit again!`
+
+}else{
+
+msg = `Super Tailor
+
+Hello ${data.name},
+
+Thank you for collecting your dress (${data.dress}).
+
+Total Amount: ₹${data.amount}
+Paid: ₹${data.paid}
+Pending Payment: ₹${data.due}
+
+Kindly clear the pending amount when possible.
+
+Thank you!`
+
+}
 
 sendWhatsApp(phone,msg)
+
 
 }else{
 
