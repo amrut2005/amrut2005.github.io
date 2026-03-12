@@ -144,6 +144,46 @@ Export Orders to Excel
 
 </table>
 
+<div style="margin-top:40px">
+
+<h2 style="margin-bottom:15px;font-family:Arial">
+Activity History
+</h2>
+
+<button onclick="clearHistory()" 
+style="
+padding:8px 14px;
+background:#d9534f;
+color:white;
+border:none;
+border-radius:5px;
+cursor:pointer;
+margin-bottom:15px;
+">
+Clear History
+</button>
+
+<table style="
+width:100%;
+border-collapse:collapse;
+font-family:Arial;
+">
+
+<thead style="background:#333;color:white">
+<tr>
+<th style="padding:10px;border:1px solid #ddd">Time</th>
+<th style="padding:10px;border:1px solid #ddd">Order No</th>
+<th style="padding:10px;border:1px solid #ddd">Name</th>
+<th style="padding:10px;border:1px solid #ddd">Action</th>
+</tr>
+</thead>
+
+<tbody id="historyTable"></tbody>
+
+</table>
+
+</div>
+
 <script type="module" src="script.js"></script>
 
 </body>
