@@ -56,6 +56,7 @@ photoData = reader.result
 const due = amount - paid
 
 await addDoc(collection(db,"orders"),{
+orderNo,
 name,
 phone,
 dress,
