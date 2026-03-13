@@ -92,6 +92,7 @@ let orderNo = document.getElementById("orderNo").value
 if(!orderNo){
 orderNo = await getNextOrderNo()
 }
+
 const name = document.getElementById("name").value
 const phone = document.getElementById("phone").value
 const dress = document.getElementById("dress").value
@@ -152,41 +153,6 @@ Thank you for choosing Super Tailor.`
 sendWhatsApp(phone,msg)
 
 loadOrders()
-
-else{
-
-const due = amount - paid
-
-await addDoc(collection(db,"orders"),{
-orderNo,
-name,
-phone,
-dress,
-amount,
-paid,
-due,
-dueDate,
-status
-})
-
-await saveHistory("New Order Created",orderNo,name)
-
-alert("Order Saved")
-
-clearForm()
-  
-let msg = `Super Tailor
-Hello ${name},
-Your order for ${dress} has been received.
-Delivery Date: ${dueDate}.
-Paid ₹${paid}
-Due ₹${due}`
-
-sendWhatsApp(phone,msg)
-
-loadOrders()
-
-}
 
 }
 
