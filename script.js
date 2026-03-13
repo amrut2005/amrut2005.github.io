@@ -590,10 +590,9 @@ clearForm()
 }
 
 // Edit page
-if(document.getElementById("name") && localStorage.getItem("editID")){
+if(window.location.pathname.includes("edit.html")){
 loadEditData()
 }
-
 // History table
 if(document.getElementById("historyTable")){
 loadHistory()
