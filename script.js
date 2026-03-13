@@ -728,4 +728,27 @@ window.location = "login.html"
 
 }
 
+function updateProgress(status){
 
+document.querySelectorAll(".step").forEach(step=>{
+step.classList.remove("active")
+})
+
+document.getElementById("step1").classList.add("active")
+
+if(status === "Stitching"){
+document.getElementById("step2").classList.add("active")
+}
+
+if(status === "Ready"){
+document.getElementById("step2").classList.add("active")
+document.getElementById("step3").classList.add("active")
+}
+
+if(status === "Collected"){
+document.getElementById("step2").classList.add("active")
+document.getElementById("step3").classList.add("active")
+document.getElementById("step4").classList.add("active")
+}
+
+}
