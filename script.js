@@ -592,7 +592,8 @@ checkStatus()
 
 async function loadHistory(){
 
-const snapshot = await getDocs(collection(db,"history"))
+const q = query(collection(db,"history"), orderBy("time","desc"))
+const snapshot = await getDocs(q)
 
 let table = ""
 
