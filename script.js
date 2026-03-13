@@ -25,6 +25,26 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
+async function uploadToCloudinary(file){
+
+const url = "https://api.cloudinary.com/v1_1/dijuztwnr/image/upload"
+
+const formData = new FormData()
+
+formData.append("file", file)
+formData.append("upload_preset", "tailor_photos")
+
+const res = await fetch(url,{
+method:"POST",
+body:formData
+})
+
+const data = await res.json()
+
+return data.secure_url
+
+}
+
 async function saveHistory(action, orderNo, name){
 
 const now = new Date().toLocaleString()
