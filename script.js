@@ -594,12 +594,22 @@ if(document.getElementById("name") && localStorage.getItem("editID")){
 loadEditData()
 }
 
-// Load history
+// History table
 if(document.getElementById("historyTable")){
 loadHistory()
 }
 
+// Track page
+const params = new URLSearchParams(window.location.search)
+const phone = params.get("phone")
+
+if(phone && document.getElementById("phone")){
+document.getElementById("phone").value = phone
+checkStatus()
 }
+
+}
+
 
 async function loadHistory(){
 
@@ -738,14 +748,4 @@ window.location = "login.html"
 
 }
 
-window.onload = function(){
 
-const params = new URLSearchParams(window.location.search)
-const phone = params.get("phone")
-
-if(phone){
-document.getElementById("phone").value = phone
-checkStatus()
-}
-
-}
