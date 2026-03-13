@@ -185,6 +185,7 @@ resultHTML += `
 <p><b>Name:</b> ${data.name}</p>
 <p><b>Dress:</b> ${data.dress}</p>
 <p><b>Status:</b> ${data.status}</p>
+updateProgress(data.status)
 <p><b>Paid:</b> ₹${data.paid}</p>
 <p><b>Due:</b> ₹${data.due}</p>
 <p><b>${dateLabel}:</b> ${dateValue}</p>
