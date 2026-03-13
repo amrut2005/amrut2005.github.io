@@ -271,7 +271,9 @@ table += `
 </td>
 
 <td>
-${d.photo ? `<img src="${d.photo}" width="60">` : ""}
+${d.photo ? `<a href="${d.photo}" target="_blank">
+<img src="${d.photo}" style="width:80px;height:80px;object-fit:cover;border-radius:6px;">
+</a>` : ""}
 </td>
 
 <td>
