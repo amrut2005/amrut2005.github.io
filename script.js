@@ -102,15 +102,11 @@ const status = document.getElementById("status").value
 
 const photoFile = document.getElementById("photo").files[0]
 
-let photoData = ""
+let photoURL = ""
 
 if(photoFile){
-
-const reader = new FileReader()
-
-reader.onload = async function(){
-
-photoData = reader.result
+photoURL = await uploadToCloudinary(photoFile)
+}
 
 const due = amount - paid
 
@@ -124,15 +120,15 @@ paid,
 due,
 dueDate,
 status,
-photo:photoData
+photo: photoURL
 })
 
 await saveHistory("New Order Created",orderNo,name)
 
 alert("Order Saved")
-  
+
 clearForm()
-  
+
 let link = `https://amrut2005.github.io/track.html?phone=${phone}`
 
 let msg = `Super Tailor
@@ -156,10 +152,6 @@ Thank you for choosing Super Tailor.`
 sendWhatsApp(phone,msg)
 
 loadOrders()
-
-}
-
-reader.readAsDataURL(photoFile)
 
 }else{
 
